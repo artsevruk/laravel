@@ -20,28 +20,28 @@ class AccountController extends BaseController {
 			)
 		);
 
-		if($validator -> fails()){
+		if($validator -> fails()) {
 			return Redirect::route('account-create')
 				-> withErrors($validator)
 				-> withInput();
-		}else {
+		} else {
 			$email 			= Input::get('email');
 			$username 		= Input::get('username');
 			$password 		= Input::get('password');
 
-			//Active code
+			//Activation code
 			$code 			= str_random(60);
 			$user = User::create(array(
 				'email' => $email,
 				'username' => $username,
 				'password' => Hash::make($password),
 				'code' => $code,
-				'activ' => 0
+				'active' => 0
 				));
 			if($user){
 				return Redirect::route('home')
 					->with('global', 'Your accout has been created!');
-			};
+			}
 		}
 	}
 }

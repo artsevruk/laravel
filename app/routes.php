@@ -16,3 +16,34 @@ Route::get('/', array(
 	'uses' => 'HomeController@home'
 	
 ));
+
+/*
+|	Unauthenticated groupe
+*/
+Route::group(array('before' => 'guest'), function(){
+
+
+	/*
+	|CSRF  Protection groupe
+	*/
+	Route::group(array('before' => 'csrf'), function(){
+		/*
+		| Create account (POST)
+		*/
+		Route::post('/account/create', array(
+			'as' => 'account-create-post',
+			'uses' => 'AccountController@postCreate'
+		));
+
+	});
+
+	/*
+	| Create account (GET)
+	*/
+	Route::get('/account/create', array(
+		'as' => 'account-create',
+		'uses' => 'AccountController@getCreate'
+	));
+
+
+});

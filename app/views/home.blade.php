@@ -1,5 +1,5 @@
 @extends('layout.main')
 
 @section ('content')
-	qwerty.	
+	Home.
 @stop

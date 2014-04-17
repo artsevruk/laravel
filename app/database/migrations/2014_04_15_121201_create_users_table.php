@@ -14,11 +14,11 @@ class CreateUsersTable extends Migration {
 	{
 		Schema::create('users', function ($table){
 			$table->increments('id') ->unsigned();
-			$table->string('email') ->nullable() ->default(null);
-			$table->string('username') ->nullable() ->default(null);
-			$table->string('password') ->nullable() ->default(null);
-			$table->string('password_temp') ->nullable() ->default(null);
-			$table->string('code')->nullable() ->default(null);
+			$table->string('email', 50) ->nullable() ->default(null);
+			$table->string('username', 20) ->nullable() ->default(null);
+			$table->string('password', 60) ->nullable() ->default(null);
+			$table->string('password_temp', 60) ->nullable() ->default(null);
+			$table->string('code', 60)->nullable() ->default(null);
 			$table->integer('active');
 			$table->timestamps();
 		});

@@ -1,12 +1,58 @@
 <?php
 class AccountController extends BaseController {
 
+
+	public function getSingIn(){
+		return View::make('account.singin');
+	}
+
+	public function postSingIn(){
+		$validator = Validator::make(Input::all(),
+			array(
+				'email' 		=> 'required|email',
+				'password' 		=> 'required'
+				)
+			);
+
+			if($validator->fails()) {
+				return Redirect::route('account-sing-in')
+						->withErrors($validator)
+						->withInput();
+			} else{
+				$auth = Auth::attempt(array(
+					'email' => Input::get('email'),
+					'password' => Input::get('password'),
+					'active' => 1
+					)
+				);
+
+				if ($auth) {
+					//Redirect to the intended page
+					return Redirect::intended('/');
+				} else{
+					return Redirect::route('account-sing-in')
+							->with('global', 'Email/Password wrong, or account not activated.');
+				}
+
+			}
+			return Redirect::route('account-sing-in')
+					->with('global', 'There was a problem singin you in. Have you activated?');
+
+	}
+
+
+	public function getSingOut() {
+		Auth::logout();
+		return Redirect::route('home');
+	}
+
 	public function getCreate() {
 		return View::make('account.create');
 
 	}
 
 	public function postCreate() {
+
 		/*
 		|print_r(Input::all());
 		*/
@@ -22,8 +68,8 @@ class AccountController extends BaseController {
 
 		if($validator -> fails()) {
 			return Redirect::route('account-create')
-				-> withErrors($validator)
-				-> withInput();
+					-> withErrors($validator)
+					-> withInput();
 		} else {
 			$email 			= Input::get('email');
 			$username 		= Input::get('username');
@@ -46,7 +92,7 @@ class AccountController extends BaseController {
 				});
 
 				return Redirect::route('home')
-					->with('global', 'Your accout has been created! We have sent you an email to activate your account.');
+						->with('global', 'Your accout has been created! We have sent you an email to activate your account.');
 			}
 		}
 	}
@@ -63,13 +109,13 @@ class AccountController extends BaseController {
 
 			if($user->save()){
 				return Redirect::route('home')
-					->with('global', 'WOWOWOWOW! Activated! You can now sing in!');
+						->with('global', 'WOWOWOWOW! Activated! You can now sing in!');
 
 			}
 		}
 
 		return Redirect::route('home')
-			->with('global', 'We could not activate your account. Try again later.');
+				->with('global', 'We could not activate your account. Try again later.');
 
 	}
 

@@ -18,14 +18,14 @@
 		</div>
 
 		<div class="field">
-			Password: <input type="text" name="password" {{ (Input::old('password')) ? ' value="' . e(Input::old('password')) . '"' : ''}}>
+			Password: <input type="password" name="password">
 			@if($errors->has('password'))
 				{{ $errors->first('password') }}
 			@endif
 		</div>
 
 		<div class="field">
-			Password_again: <input type="text" name="password_again" {{ (Input::old('password_again')) ? ' value="' . e(Input::old('password_again')) . '"' : ''}}>
+			Password_again: <input type="password" name="password_again">
 			@if($errors->has('password_again'))
 				{{ $errors->first('password_again') }}
 			@endif

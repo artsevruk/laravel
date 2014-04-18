@@ -18,6 +18,19 @@ Route::get('/', array(
 ));
 
 /*
+|	Authenticated groupe
+*/
+Route::group(array('before' => 'auth'), function(){
+	/*
+	|	Sing out
+	*/
+	Route::get('account-sing-out', array(
+		'as' => 'account-sing-out',
+		'uses' => 'AccountController@getSingOut'
+	));
+});
+
+/*
 |	Unauthenticated groupe
 */
 Route::group(array('before' => 'guest'), function(){
@@ -27,6 +40,7 @@ Route::group(array('before' => 'guest'), function(){
 	|CSRF  Protection groupe
 	*/
 	Route::group(array('before' => 'csrf'), function(){
+		
 		/*
 		| Create account (POST)
 		*/
@@ -35,7 +49,23 @@ Route::group(array('before' => 'guest'), function(){
 			'uses' => 'AccountController@postCreate'
 		));
 
+		/*
+		| Sing in (POST)
+		*/		
+		Route::post('/account/sing-in', array(
+			'as' => 'account-sing-in-post',
+			'uses' => 'AccountController@postSingIn'
+			));
 	});
+
+	/*
+	| Sing in (GET)
+	*/
+	Route::get('/account/sing-in', array(
+		'as' => 'account-sing-in',
+		'uses' => 'AccountController@getSingIn'
+		));
+
 
 	/*
 	| Create account (GET)

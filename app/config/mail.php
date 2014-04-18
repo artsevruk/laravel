@@ -54,7 +54,7 @@ return array(
 	|
 	*/
 
-	'from' => array('address' => 'artsevruk@gmail.com', 'name' => 'example'),
+	'from' => array('address' => 'artsevruk@gmail.com', 'name' => 'Auth_example'),
 
 	/*
 	|--------------------------------------------------------------------------

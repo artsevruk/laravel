@@ -1,6 +1,7 @@
 @extends('layout.main')
 
 @section('content')
+<div class="conteiner">
 	<form action="{{ URL::route ('account-create-post') }}" method="post">
 
 		<div class="field">
@@ -34,5 +35,6 @@
 		<input type="submit" value="Create account">
 		{{ Form::token() }}
 	</form>
+</div>
 
 @stop

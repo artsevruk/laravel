@@ -10,7 +10,7 @@
 			@endif		
 		</div>
 		<div class="field">
-			Password: <input type="password" name="password" {{ (Input::old('password')) ? ' value="' . e(Input::old('password')) . '"' : ''}}>
+			Password: <input type="password" name="password">
 			@if($errors->has('password'))
 				{{ $errors->first('password') }}
 			@endif

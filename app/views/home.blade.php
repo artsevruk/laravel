@@ -7,6 +7,16 @@
 	{{ Auth::user()->all() }}
 
 	@else
-		You are not signed in.
+	<div class="container">
+		You are not signed in.You are not signed in.You are not signed in.You are not signed in.You are not signed in.
+		You are not signed in.You are not signed in.You are not signed in.You are not signed in.You are not signed in.
+		You are not signed in.You are not signed in.You are not signed in.You are not signed in.You are not signed in.
+		You are not signed in.You are not signed in.You are not signed in.You are not signed in.You are not signed in.
+		You are not signed in.You are not signed in.You are not signed in.You are not signed in.You are not signed in.
+		You are not signed in.You are not signed in.You are not signed in.You are not signed in.You are not signed in.
+		You are not signed in.You are not signed in.You are not signed in.You are not signed in.You are not signed in.
+		
+		
+	</div>
 	@endif
 @stop

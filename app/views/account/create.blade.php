@@ -1,7 +1,7 @@
 @extends('layout.main')
 
 @section('content')
-<div class="conteiner">
+<div class="container">
 	<form action="{{ URL::route ('account-create-post') }}" method="post">
 
 		<div class="field">

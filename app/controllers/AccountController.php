@@ -19,12 +19,14 @@ class AccountController extends BaseController {
 						->withErrors($validator)
 						->withInput();
 			} else{
+
+				$remember = (Input::has('remember')) ? true : false;
+
 				$auth = Auth::attempt(array(
 					'email' => Input::get('email'),
 					'password' => Input::get('password'),
 					'active' => 1
-					)
-				);
+					), $remember);
 
 				if ($auth) {
 					//Redirect to the intended page

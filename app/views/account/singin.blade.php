@@ -9,10 +9,13 @@
 			@if($errors->has('email'))
 				{{ $errors->first('email') }}
 			@endif	
-			<input type="password" class="form-control" placeholder="Password" required="" name="password">	
+			<input type="password" class="form-control" placeholder="Password" required="" name="password" {{ (Input::old('email')) ? ' value="' . e(Input::old('email')) . '"' : ''}}>	
 			@if($errors->has('password'))
 				{{ $errors->first('password') }}
 			@endif
+			<label class="checkbox">
+          		<input type="checkbox" name="remember" id="remember" value="remember-me"> Remember me
+        	</label>
 			<input class="btn btn-lg btn-primary btn-block" type="submit" value="Sing in">
 		{{ Form::token() }}
 	</form>

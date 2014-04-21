@@ -15,7 +15,7 @@ class AccountController extends BaseController {
 			);
 
 			if($validator->fails()) {
-				return Redirect::route('account-sing-in')
+				return 	Redirect::route('account-sing-in')
 						->withErrors($validator)
 						->withInput();
 			} else{
@@ -35,12 +35,12 @@ class AccountController extends BaseController {
 
 
 				} else{
-					return Redirect::route('account-sing-in')
+					return 	Redirect::route('account-sing-in')
 							->with('global', 'Email/Password wrong, or account not activated.');
 				}
 
 			}
-			return Redirect::route('account-sing-in')
+			return 	Redirect::route('account-sing-in')
 					->with('global', 'There was a problem singin you in. Have you activated?');
 
 	}
@@ -72,7 +72,7 @@ class AccountController extends BaseController {
 		);
 
 		if($validator -> fails()) {
-			return Redirect::route('account-create')
+			return 	Redirect::route('account-create')
 					-> withErrors($validator)
 					-> withInput();
 		} else {
@@ -96,7 +96,7 @@ class AccountController extends BaseController {
 
 				});
 
-				return Redirect::route('home')
+				return 	Redirect::route('home')
 						->with('global', 'Your accout has been created! We have sent you an email to activate your account.');
 			}
 		}
@@ -113,15 +113,58 @@ class AccountController extends BaseController {
 			$user->code 		= '';
 
 			if($user->save()){
-				return Redirect::route('home')
+				return 	Redirect::route('home')
 						->with('global', 'WOWOWOWOW! Activated! You can now sing in!');
 
 			}
 		}
 
-		return Redirect::route('home')
+		return 	Redirect::route('home')
 				->with('global', 'We could not activate your account. Try again later.');
 
+	}
+
+	public function getChangePassword(){
+		return View::make('account.password');	
+	}
+
+	public function postChangePassword(){
+		$validator = Validator::make(Input::all(),
+			array(	
+				'old_password'  	=> 'required',
+				'new_password'  	=> 'required|min:6',
+				'password_again' 	=> 'required|same:new_password'
+			)
+		);
+
+		if($validator->fails()){
+			return 	Redirect::route('account-change-password')
+					->withErrors($validator);
+
+		}else{
+
+			$user = User::find(Auth::user()->id);
+
+			$old_password = Input::get('old_password');
+			$new_password = Input::get('new_password');
+
+			if(Hash::check($old_password, $user->getAuthPassword())){
+				$user->password = Hash::make($new_password);
+
+				if($user->save()){
+					return Redirect::route('home')
+						->with('global', 'Woqoqo');		
+				}
+
+
+			}else{	
+				return 	Redirect::route('account-change-password')
+						->with('global', 'You old password is incorrect!');
+				}
+			}
+
+		return 	Redirect::route('account-change-password')
+				->with('global', 'You password could not be changed!!!!!');
 	}
 
 }

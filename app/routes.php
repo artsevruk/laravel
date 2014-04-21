@@ -21,8 +21,30 @@ Route::get('/', array(
 |	Authenticated groupe
 */
 Route::group(array('before' => 'auth'), function(){
+
+	Route::group(array('before' => 'csrf'), function(){
+
+		/*
+		|	Change password (POST)
+		*/
+		Route::post('account/change-password', array(
+			'as' => 'account-change-password-post',
+			'uses' => 'AccountController@postChangePassword'
+			));
+
+	});
+
 	/*
-	|	Sing out
+	|	Change password (GET)
+	*/
+	Route::get('account/change-password', array(
+		'as' => 'account-change-password',
+		'uses' => 'AccountController@getChangePassword'
+		));
+
+
+	/*
+	|	Sing out (GET)
 	*/
 	Route::get('account-sing-out', array(
 		'as' => 'account-sing-out',

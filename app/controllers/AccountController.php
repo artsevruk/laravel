@@ -20,17 +20,20 @@ class AccountController extends BaseController {
 						->withInput();
 			} else{
 
-				$remember = (Input::has('remember')) ? true : false;
 
 				$auth = Auth::attempt(array(
 					'email' => Input::get('email'),
 					'password' => Input::get('password'),
 					'active' => 1
-					), $remember);
+					));
+
+
 
 				if ($auth) {
 					//Redirect to the intended page
 					return Redirect::intended('/');
+
+
 				} else{
 					return Redirect::route('account-sing-in')
 							->with('global', 'Email/Password wrong, or account not activated.');

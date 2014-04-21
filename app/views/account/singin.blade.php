@@ -13,9 +13,9 @@
 			@if($errors->has('password'))
 				{{ $errors->first('password') }}
 			@endif
-			<label class="checkbox">
-          		<input type="checkbox" name="remember" id="remember" value="remember-me"> Remember me
-        	</label>
+			<!--<label class="checkbox">
+          		<input type="checkbox" name="remember" id="remember"> Remember me
+        	</label>-->
 			<input class="btn btn-lg btn-primary btn-block" type="submit" value="Sing in">
 		{{ Form::token() }}
 	</form>

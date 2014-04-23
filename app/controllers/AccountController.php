@@ -167,4 +167,12 @@ class AccountController extends BaseController {
 				->with('global', 'You password could not be changed!!!!!');
 	}
 
+	public function getForgotPassword(){
+		return View::make('account.forgot');
+	}
+
+	public function postForgotPassword(){
+		return View::make('account.forgot');
+	}
+
 }

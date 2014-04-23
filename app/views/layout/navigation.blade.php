@@ -14,7 +14,6 @@
             <ul class="nav navbar-nav">
               <li class="active"><a href="{{ URL::route('home') }}">Home</a></li>
               <li><a href="#">Link</a></li>
-              <li><a href="#">Link</a></li>
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
                 <ul class="dropdown-menu">
@@ -35,6 +34,7 @@
               @else
               <li><a href="{{ URL::route ('account-sing-in') }}">Sing in</a></li>
               <li><a href="{{ URL::route ('account-create') }}">Create account</a></li>
+              <li><a href="{{ URL::route ('account-forgot-password') }}">Forgot password</a></li>
               @endif
             </ul>
           </div><!--/.nav-collapse -->

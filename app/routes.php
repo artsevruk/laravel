@@ -83,7 +83,25 @@ Route::group(array('before' => 'guest'), function(){
 			'as' => 'account-sing-in-post',
 			'uses' => 'AccountController@postSingIn'
 			));
+
+		/*
+		| Forgot password (POST)
+		*/
+		Route::post('/account/forgot-password', array(
+			'as' => 'account-forgot-password-post',
+			'uses' => 'AccountController@postForgotPassword'
+		));
 	});
+
+	/*
+	| Forgot password (GET)
+	*/
+	Route::get('/account/forgot-password', array(
+		'as' => 'account-forgot-password',
+		'uses' => 'AccountController@getForgotPassword'
+	));
+
+
 
 	/*
 	| Sing in (GET)

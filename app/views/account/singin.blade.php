@@ -9,7 +9,7 @@
 			@if($errors->has('email'))
 				{{ $errors->first('email') }}
 			@endif	
-			<input type="password" class="form-control" placeholder="Password" required="" name="password" {{ (Input::old('email')) ? ' value="' . e(Input::old('email')) . '"' : ''}}>	
+			<input type="password" class="form-control" placeholder="Password" required="" name="password" {{ (Input::old('password')) ? ' value="' . e(Input::old('password')) . '"' : ''}}>	
 			@if($errors->has('password'))
 				{{ $errors->first('password') }}
 			@endif

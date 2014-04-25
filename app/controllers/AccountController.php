@@ -172,7 +172,30 @@ class AccountController extends BaseController {
 	}
 
 	public function postForgotPassword(){
-		return View::make('account.forgot');
+		$validator =  Validator::make(Input::get('email'), 
+			array(
+				'email' => 'required|email'
+			)
+		);
+
+		if($validator->fails()){
+
+				return 	Redirect::route('account-forgot-password')
+						->withErrors($validator)
+						->withInput();
+
+		} else {
+
+		}
+
+		return 	Redirect::route('account-forgot-password')
+				->with('global', 'Could not request password.');
+
 	}
 
 }
+
+
+
+
+

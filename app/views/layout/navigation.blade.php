@@ -31,6 +31,7 @@
               @if(Auth::check())
               <li><a href="{{ URL::route ('account-sing-out') }}">Sing out</a></li>
               <li><a href="{{ URL::route ('account-change-password') }}">Change password</a></li>
+              <li><a href="{{ URL::route ('profile-user') }}">profile</a></li>
               @else
               <li><a href="{{ URL::route ('account-sing-in') }}">Sing in</a></li>
               <li><a href="{{ URL::route ('account-create') }}">Create account</a></li>

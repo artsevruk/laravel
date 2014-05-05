@@ -5,9 +5,6 @@
 		Hello {{ Auth::user()->username }}.
 		<p>-----------------------------------</p>
 
-		<p>-----------------------------------</p>
-	{{ Auth::user()->all() }}
-
 	@else
 	<div class="container">
 		You are not signed in.

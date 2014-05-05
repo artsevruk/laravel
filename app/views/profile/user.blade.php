@@ -1,5 +1,7 @@
 @extends('layout.main')
 
 @section('content')
-	<p> {{ e($user->username) }}  ({{ e($user->email) }}) </p>
+	<p> Profile {{ Auth::user()->username }} </p>
+	<p> ------------------------------------------------------ </p>
+	<p> {{ Auth::user()->all() }} </p>
 @stop

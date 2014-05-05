@@ -101,6 +101,10 @@ Route::group(array('before' => 'guest'), function(){
 		'uses' => 'AccountController@getForgotPassword'
 	));
 
+	Route::get('/account/recover/{code}', array(
+		'as' => 'account-recover',
+		'uses' => 'AccountController@getRecover'
+	));
 
 
 	/*

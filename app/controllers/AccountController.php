@@ -172,7 +172,7 @@ class AccountController extends BaseController {
 	}
 
 	public function postForgotPassword(){
-		$validator =  Validator::make(Input::get('email'), 
+		$validator =  Validator::make(Input::all(), 
 			array(
 				'email' => 'required|email'
 			)
@@ -186,11 +186,55 @@ class AccountController extends BaseController {
 
 		} else {
 
+			$user = User::where('email', '=', Input::get('email'));
+
+			if($user->count()){
+				$user 					= $user->first();
+
+				//Generate a new code and password
+				$code 					= str_random(60);
+				$password 				= str_random(10);
+
+				$user->code 			= $code;
+				$user->password_temp 	= Hash::make($password);
+
+
+				if($user->save()){
+					Mail::send('emails.auth.forgot', array( 'link' => URL::route('account-recover', $code), 'username' => $user->username, 'password' => $password ), function($message) use ($user){
+					$message->to($user->email, $user->username)->subject('Your new password');
+					
+				});
+
+				return 	Redirect::route('home')
+						->with('global', 'We have sent you a new password by email.');
+				}
+			}
 		}
 
 		return 	Redirect::route('account-forgot-password')
 				->with('global', 'Could not request password.');
 
+	}
+
+	public function getRecover($code){
+		$user = User::where('code', '=', $code)
+				->where('password_temp', '!=', ' ');
+
+		if($user->count()){
+			$user = $user->first();
+
+			$user->password 			= $user->password_temp;
+			$user->password_temp 		= ' ';
+			$user->code 				= ' ';
+
+			if($user->save()){
+				return Redirect::route('home')
+					->with('global', 'Your account has been recovered and you can sing in with your new password.');
+			}
+		}
+
+		return Redirect::route('home')
+				->with('global', 'Could not recover your account.');
 	}
 
 }

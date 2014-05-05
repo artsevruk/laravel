@@ -19,7 +19,7 @@ class CreateUsersTable extends Migration {
 			$table->string('password', 60) ->nullable() ->default(null);
 			$table->string('password_temp', 60) ->nullable() ->default(null);
 			$table->string('code', 60)->nullable() ->default(null);
-			$table->string('remember_token',100)->nullable() ->default(null);
+			$table->string('remember_token',100)->nullable() ->default(null); //laravel update 4.11
 			$table->integer('active');
 			$table->timestamps();
 		});

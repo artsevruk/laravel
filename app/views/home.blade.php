@@ -10,13 +10,8 @@
 
 	@else
 	<div class="container">
-		You are not signed in.You are not signed in.You are not signed in.You are not signed in.You are not signed in.
-		You are not signed in.You are not signed in.You are not signed in.You are not signed in.You are not signed in.
-		You are not signed in.You are not signed in.You are not signed in.You are not signed in.You are not signed in.
-		You are not signed in.You are not signed in.You are not signed in.You are not signed in.You are not signed in.
-		You are not signed in.You are not signed in.You are not signed in.You are not signed in.You are not signed in.
-		You are not signed in.You are not signed in.You are not signed in.You are not signed in.You are not signed in.
-		You are not signed in.You are not signed in.You are not signed in.You are not signed in.You are not signed in.
+		You are not signed in.
+		
 		
 		
 	</div>

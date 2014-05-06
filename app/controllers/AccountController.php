@@ -1,7 +1,6 @@
 <?php
 class AccountController extends BaseController {
 
-
 	public function getSingIn(){
 		return View::make('account.singin');
 	}

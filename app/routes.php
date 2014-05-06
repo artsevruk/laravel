@@ -22,6 +22,11 @@ Route::get('user/{username}', array(
 	'uses' => 'ProfileController@user'
 ));
 
+Route::get('users', array(
+	'as' => 'profile-users',
+	'uses' => 'ProfileController@users'
+));
+
 /*
 |	Authenticated groupe
 */

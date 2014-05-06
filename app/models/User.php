@@ -21,6 +21,17 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	 */
 	protected $hidden = array('password');
 
+
+	public function getUsername(){
+
+		foreach ( User::all() as $user ) {
+			return $this->$user->username;
+		}
+	}
+
+
+	
+
 	/**
 	 * Get the unique identifier for the user.
 	 *

@@ -1,28 +1,35 @@
 <?php 
 class ProfileController extends BaseController{
-/*	public function user($username){
-		$user = User::where('username', '=', $username);
 
-		if($user->count()) {	
-			$user = $user->first();
-			return View::make('profile.user')
-					->with('user', $user);
-		}
+	public function user($username){
 
-		return App::abort(404);
-	} */
-	public function user(){
-		$username = Auth::user()->username;
+		/*if (Auth::check()){
+			$username = Auth::user()->username;
+			$user = User::where('username', '=', $username);
+			
+			if($user->count()) {	
+				$user = $user->first();
+				return View::make('profile.user')
+						->with('user', $user);
+			}
 
-		$user = User::where('username', '=', $username);
-		
+		} else { */
 
-		if($user->count()) {	
-			$user = $user->first();
-			return View::make('profile.user')
-					->with('user', $user);
-		}
+			$user = User::where('username', '=', $username);
+			
+			if($user->count()) {	
+				$user = $user->first();
+				return View::make('profile.user')
+						->with('user', $user);
+			}
+			
+		/*}
 
-		return App::abort(404);
+		echo 'не понятно авторизовался пользователь или нет...';*/
 	} 
+
+	public function users(){
+
+		return View::make('profile.users');
+	}
 }
